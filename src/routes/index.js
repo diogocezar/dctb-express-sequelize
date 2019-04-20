@@ -11,7 +11,7 @@ class Routes {
   }
 
   setRoutes() {
-    this.router.get('/user', UserController.show)
+    this.router.get('/user/:id', UserController.show)
     this.router.post('/user', UserController.store)
   }
 
