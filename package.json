@@ -15,10 +15,12 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "nodemon": "^1.18.11"
+    "nodemon": "^1.18.11",
+    "sequelize-cli": "^5.4.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "sequelize": "^5.7.1"
   }
 }
