@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
 const env = process.env.NODE_ENV || 'development'
-const config = require('../config/database.json')[env]
+const config = require('../config/database.js')[env]
 
 let sequelize
 if (config.use_env_variable) {
@@ -11,9 +11,11 @@ if (config.use_env_variable) {
 }
 
 const UserModel = require('./User')
+const PaymentLinksModel = require('./PaymentLinks')
 
 const models = {
   User: UserModel.init(sequelize, Sequelize),
+  PaymentLinks: PaymentLinksModel.init(sequelize, Sequelize),
 }
 
 Object.values(models)
