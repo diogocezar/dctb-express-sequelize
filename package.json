@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "express-validator": "^5.3.1",
     "mssql": "^5.1.0",
     "mysql2": "^1.6.5",
     "sequelize": "^5.7.1",

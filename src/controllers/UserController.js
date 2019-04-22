@@ -1,9 +1,24 @@
+const { check } = require('express-validator/check')
+const ValidationHelper = require('../helpers/ValidationHelper')
 const { User } = require('../models')
+
+class UserValidator {
+  validateStore() {
+    return [check('name', 'User name does not exists').exists()]
+  }
+}
 
 class UserController {
   async store(req, res) {
-    const user = await User.create(req.body)
-    return res.json(user)
+    try {
+      if ((await ValidationHelper.checkValidation(req, res)) === true) {
+        const user = await User.create(req.body)
+        return res.json(user)
+      }
+    } catch (err) {
+      return res.json(err)
+    }
+    return false
   }
 
   async show(req, res) {
@@ -13,4 +28,5 @@ class UserController {
   }
 }
 
-module.exports = new UserController()
+module.exports.UserController = new UserController()
+module.exports.UserValidator = new UserValidator()
