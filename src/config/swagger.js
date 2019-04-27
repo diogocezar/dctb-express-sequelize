@@ -7,7 +7,7 @@ const swaggerDefinition = {
     description: 'Endpoints to teste a simple sequelize environment',
   },
   host: `localhost:${process.env.PORT || 3333}`,
-  basePath: '/swagger',
+  basePath: '/',
 }
 
 module.exports = { swaggerDefinition }

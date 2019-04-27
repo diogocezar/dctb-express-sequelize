@@ -11,30 +11,60 @@ class Routes {
     this.setRoutes()
   }
 
+  // https://swagger.io/docs/specification/basic-structure/
+  // https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.0.md#parameterObject
+
   setRoutes() {
     /**
      * @swagger
-     * /user:
-     *   post:
-     *     tags:
-     *       - Users
-     *     name: Users
-     *     summary: Get Users
-     *     consumes:
-     *       - application/json
-     *     parameters:
-     *       - id: body
-     *         required:
-     *           - id
-     *     responses:
-     *       200:
-     *         description: User found and logged in successfully
-     *       401:
-     *         description: Bad username, not found in db
-     *       403:
-     *         description: Username and password don't match
+     * /user/{id}:
+     *  get:
+     *    summary: Get Users
+     *    consumes:
+     *      - application/json
+     *    parameters:
+     *      - name: id
+     *        in: path
+     *        required: true
+     *        description: Get user at database with this id
+     *        schema:
+     *          type: integer
+     *          format: int64
+     *          minimum: 1
+     *    responses:
+     *      '200':
+     *        description: A user object.
+     *        content:
+     *        application/json:
+     *        schema:
+     *          type: object
      */
     this.router.get('/user/:id', UserController.show)
+    /**
+     * @swagger
+     * /user:
+     *  post:
+     *    summary: Store a new User
+     *    requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             $ref: '#/definitions/User'
+     *    parameters:
+     *      - in: body
+     *        name: user
+     *        description: The user to create.
+     *        schema:
+     *          $ref: '#/definitions/User'
+     *    responses:
+     *      '201':
+     *        description: User created.
+     *        content:
+     *        application/json:
+     *        schema:
+     *          type: object
+     */
     this.router.post('/user', UserValidator.validateStore(), UserController.store)
     this.router.get('/paymentLinks', PaymentLinksController.show)
   }

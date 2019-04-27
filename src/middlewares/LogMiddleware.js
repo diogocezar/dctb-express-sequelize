@@ -17,15 +17,16 @@ class LogMiddleware {
     return (req, res, next) => {
       const endDate = new Date()
       const timeStamp = endDate - req.logData.startDate
-      const { rawJson } = res
+      const { rawJson, statusCode } = res
       const log = {
         ...req.logData,
         endDate,
         timeStamp,
         rawJson,
+        statusCode,
       }
       // save to database
-      // console.log(log)
+      console.log(log)
       next()
     }
   }
