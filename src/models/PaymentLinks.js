@@ -1,5 +1,10 @@
 const Sequelize = require('sequelize')
 
+/**
+ * Class Generated
+ * with command: ./node_modules/.bin/sequelize-auto -o "./src/models" -h [host] -d [base] -u sa -x "[pass]" -e mssql -t payment_links
+ */
+
 class PaymentLinks extends Sequelize.Model {
   static init(sequelize, DataTypes) {
     return sequelize.define(
