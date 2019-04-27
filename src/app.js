@@ -1,9 +1,10 @@
 const express = require('express')
 const cors = require('cors')
-const path = require('path')
 require('dotenv').config()
 const routes = require('./routes')
-const { LogMiddlewareStart, LogMiddlewareEnd } = require('./middlewares/LogMiddleware')
+
+const { logMiddlewareStart, logMiddlewareEnd } = require('./middlewares/LogMiddleware')
+const SwaggerHelper = require('./helpers/SwaggerHelper')
 
 class App {
   constructor() {
@@ -15,10 +16,10 @@ class App {
     this.app = express()
     this.app.use(cors())
     this.app.use(express.json())
-    this.app.use('/public', express.static(path.resolve(__dirname, '..', 'public')))
-    this.app.use(LogMiddlewareStart)
+    this.app.use(logMiddlewareStart)
     this.app.use(routes)
-    this.app.use(LogMiddlewareEnd)
+    this.app.use(logMiddlewareEnd)
+    SwaggerHelper.use(this.app)
   }
 
   start() {
