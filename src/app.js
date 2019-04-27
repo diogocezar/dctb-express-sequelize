@@ -3,6 +3,7 @@ const cors = require('cors')
 const path = require('path')
 require('dotenv').config()
 const routes = require('./routes')
+const { LogMiddlewareStart, LogMiddlewareEnd } = require('./middlewares/LogMiddleware')
 
 class App {
   constructor() {
@@ -15,7 +16,9 @@ class App {
     this.app.use(cors())
     this.app.use(express.json())
     this.app.use('/public', express.static(path.resolve(__dirname, '..', 'public')))
+    this.app.use(LogMiddlewareStart)
     this.app.use(routes)
+    this.app.use(LogMiddlewareEnd)
   }
 
   start() {

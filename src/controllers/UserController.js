@@ -1,5 +1,6 @@
 const { check } = require('express-validator/check')
 const ValidationHelper = require('../helpers/ValidationHelper')
+const ResponseHelper = require('../helpers/ResponseHelper')
 const { User } = require('../models')
 
 class UserValidator {
@@ -9,22 +10,25 @@ class UserValidator {
 }
 
 class UserController {
-  async store(req, res) {
+  async store(req, res, next) {
     try {
       if ((await ValidationHelper.checkValidation(req, res)) === true) {
         const user = await User.create(req.body)
-        return res.json(user)
+        res.json(ResponseHelper.get(true, 'User stored.', res, user))
       }
     } catch (err) {
-      return res.json(err)
+      res.json(ResponseHelper.get(true, 'Error User stored.', res, err))
     }
-    return false
+    next()
   }
 
-  async show(req, res) {
+  async show(req, res, next) {
     const user = await User.findAll({ where: { id: req.params.id } })
-    if (user.length) return res.json(user)
-    return res.json({ message: 'User not found.' })
+    const response = user.length
+      ? ResponseHelper.get(true, 'User returned.', res, user)
+      : ResponseHelper.get(false, 'User not found.', res, user)
+    res.json(response)
+    next()
   }
 }
 
