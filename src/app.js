@@ -9,24 +9,32 @@ const SwaggerHelper = require('./helpers/SwaggerHelper')
 
 class App {
   constructor() {
-    this.configure()
+    this.app = express()
+    this.middlewares()
+    this.swagger()
+    this.routes()
+    this.finish()
     this.start()
   }
 
-  configure() {
-    this.app = express()
+  middlewares() {
     this.app.use(cors())
     this.app.use(express.json())
     this.app.use(logMiddlewareStart)
     this.app.use(IdHashMiddleware)
-    this.app.use(routes)
-    this.app.use(logMiddlewareEnd)
+  }
+
+  swagger() {
     SwaggerHelper.use(this.app)
   }
 
-  start() {
-    this.app.listen(process.env.PORT || 3333)
+  routes() {
+    this.app.use(routes)
+  }
+
+  finish() {
+    this.app.use(logMiddlewareEnd)
   }
 }
 
-new App()
+module.exports = new App().express

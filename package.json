@@ -6,8 +6,9 @@
   "author": "Diogo Cezar <diogo@diogocezar.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "start": "node src/app.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js --ignore tests",
+    "test": "jest"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -15,6 +16,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.7.1",
     "nodemon": "^1.18.11",
     "sequelize-cli": "^5.4.0"
   },
