@@ -88,6 +88,11 @@ adal-node@^0.1.22:
     xmldom ">= 0.1.x"
     xpath.js "~1.1.0"
 
+aes-cross@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/aes-cross/-/aes-cross-1.0.9.tgz#d1cd4854551a47d2ca6809c1f8d74333d16cdd09"
+  integrity sha1-0c1IVFUaR9LKaAnB+NdDM9Fs3Qk=
+
 ajv-keywords@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
