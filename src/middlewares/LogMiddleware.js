@@ -24,7 +24,7 @@ class LogMiddleware {
         timeStamp,
         statusCode,
       }
-      if (rawJson) log.rawJson = rawJson
+      if (rawJson) log.rawJson = JSON.stringify(rawJson)
       // save to database
       console.log(log)
       next()
