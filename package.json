@@ -8,7 +8,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js --ignore tests",
-    "test": "jest",
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all"
   },
@@ -20,7 +22,8 @@
     "eslint-plugin-react": "^7.12.4",
     "jest": "^24.7.1",
     "nodemon": "^1.18.11",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "sqlite3": "^4.0.6"
   },
   "dependencies": {
     "aes-cross": "^1.0.9",

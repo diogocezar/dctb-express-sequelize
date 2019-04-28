@@ -1,6 +1,9 @@
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+})
+
 const express = require('express')
 const cors = require('cors')
-require('dotenv').config()
 const routes = require('./routes')
 
 const { logMiddlewareStart, logMiddlewareEnd } = require('./middlewares/LogMiddleware')
