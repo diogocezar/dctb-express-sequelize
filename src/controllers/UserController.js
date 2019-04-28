@@ -1,7 +1,7 @@
 const { check } = require('express-validator/check')
+const { User } = require('../models')
 const ValidationHelper = require('../helpers/ValidationHelper')
 const ResponseHelper = require('../helpers/ResponseHelper')
-const { User } = require('../models')
 
 class UserValidator {
   validateStore() {
