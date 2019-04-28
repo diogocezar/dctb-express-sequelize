@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const swaggerDefinition = {
+module.exports = {
   info: {
     title: 'dctb-express-sequelize',
     version: '1.0.0',
@@ -9,5 +9,3 @@ const swaggerDefinition = {
   host: `localhost:${process.env.PORT || 3333}`,
   basePath: '/',
 }
-
-module.exports = { swaggerDefinition }

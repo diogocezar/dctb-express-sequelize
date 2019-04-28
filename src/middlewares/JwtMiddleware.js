@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { jwtConfigs } = require('../config/jwt')
+const jwtConfigs = require('../config/jwt')
 
 class JwtMiddleware {
   sign(payload) {

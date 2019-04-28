@@ -22,9 +22,9 @@ class LogMiddleware {
         ...req.logData,
         endDate,
         timeStamp,
-        rawJson,
         statusCode,
       }
+      if (rawJson) log.rawJson = rawJson
       // save to database
       console.log(log)
       next()

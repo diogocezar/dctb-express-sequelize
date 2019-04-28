@@ -5,7 +5,27 @@ const ResponseHelper = require('../helpers/ResponseHelper')
 
 class UserValidator {
   validateStore() {
-    return [check('name', 'User name does not exists').exists()]
+    return [
+      check('name', 'Name does not exists').exists(),
+      check('name', 'Name need to be string').isString(),
+      check('name', 'Name string lenght need to be between 5 and 100').isLength({
+        min: 5,
+        max: 100,
+      }),
+      check('email', 'Email does not exists').exists(),
+      check('email', 'Email needs to be an email').isEmail(),
+      check('email', 'Email need to be string').isString(),
+      check('email', 'Email string lenght need to be between 15 and 100').isLength({
+        min: 15,
+        max: 100,
+      }),
+      check('password', 'Password does not exists').exists(),
+      check('password', 'Password need to be string').isString(),
+      check('password', 'Password string lenght need to be between 5 and 100').isLength({
+        min: 5,
+        max: 100,
+      }),
+    ]
   }
 }
 

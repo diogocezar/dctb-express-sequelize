@@ -1,7 +1,7 @@
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express')
 const path = require('path')
-const { swaggerDefinition } = require('../config/swagger')
+const swaggerDefinition = require('../config/swagger')
 
 class SwaggerHelper {
   constructor() {
