@@ -13,18 +13,24 @@ const Sequelize = require('sequelize')
  *      password:
  *        type: string
  *    required:
- *      - id
  *      - name
  *      - email
  *      - password
  */
 class User extends Sequelize.Model {
   static init(sequelize, DataTypes) {
-    return sequelize.define('user', {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password_hash: DataTypes.STRING,
-    })
+    return sequelize.define(
+      'user',
+      {
+        name: DataTypes.STRING,
+        email: DataTypes.STRING,
+        password_hash: DataTypes.STRING,
+      },
+      {
+        updatedAt: 'updated_at',
+        createdAt: 'created_at',
+      },
+    )
   }
 }
 

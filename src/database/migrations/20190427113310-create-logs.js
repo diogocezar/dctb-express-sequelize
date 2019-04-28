@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, DataTypes) => queryInterface.createTable('Logs', {
+  up: (queryInterface, DataTypes) => queryInterface.createTable('logs', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -27,15 +27,15 @@ module.exports = {
       allowNull: false,
       type: DataTypes.DATE,
     },
-    createdAt: {
+    created_at: {
       allowNull: false,
       type: DataTypes.DATE,
     },
-    updatedAt: {
+    updated_at: {
       allowNull: false,
       type: DataTypes.DATE,
     },
   }),
 
-  down: queryInterface => queryInterface.dropTable('Logs'),
+  down: queryInterface => queryInterface.dropTable('logs'),
 }

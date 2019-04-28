@@ -14,7 +14,6 @@ class App {
     this.swagger()
     this.routes()
     this.finish()
-    this.start()
   }
 
   middlewares() {
@@ -37,4 +36,4 @@ class App {
   }
 }
 
-module.exports = new App().express
+module.exports = new App().app

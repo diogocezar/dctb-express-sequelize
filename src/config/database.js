@@ -11,8 +11,8 @@ module.exports = {
     logging: false,
     define: {
       timestamps: true,
-      underscord: true,
-      underscordAll: true,
+      underscored: true,
+      underscoredAll: true,
     },
   },
 }
