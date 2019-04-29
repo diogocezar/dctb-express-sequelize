@@ -4,6 +4,8 @@ const routes = express.Router()
 
 const { UserController, UserValidator } = require('../controllers/UserController')
 const PaymentLinksController = require('../controllers/PaymentLinksController')
+const SessionController = require('../controllers/SessionController')
+const { auth } = require('../middlewares/JwtMiddleware')
 
 class Routes {
   constructor() {
@@ -67,6 +69,10 @@ class Routes {
      */
     this.router.post('/user', UserValidator.validateStore(), UserController.store)
     this.router.get('/paymentLinks', PaymentLinksController.show)
+    this.router.post('/sessions', SessionController.store)
+
+    this.router.use(auth)
+    this.router.get('/dashboard', (req, res) => res.status(200).send())
   }
 
   getRouter() {

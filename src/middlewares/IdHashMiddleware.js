@@ -16,7 +16,7 @@ class IdHashMiddleware {
           req.body.idClient = -1
         }
       }
-      next()
+      return next()
     }
   }
 }

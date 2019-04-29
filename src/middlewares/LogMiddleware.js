@@ -9,7 +9,7 @@ class LogMiddleware {
         startDate,
       }
       req.logData = logData
-      next()
+      return next()
     }
   }
 
@@ -27,7 +27,7 @@ class LogMiddleware {
       if (rawJson) log.rawJson = JSON.stringify(rawJson)
       // save to database
       console.log(log)
-      next()
+      return next()
     }
   }
 }

@@ -1,31 +1,26 @@
 const jwt = require('jsonwebtoken')
-const jwtConfigs = require('../config/jwt')
+const { promisify } = require('util')
 
 class JwtMiddleware {
-  sign(payload) {
-    return jwt.sign(payload, jwtConfigs.secret, {
-      expiresIn: jwtConfigs.expiresIn,
-    })
-  }
-
-  verify(req, res, next) {
-    return (req, res, next) => {
-      const token = req.body.token || req.query.token || req.headers['x-access-token']
-      if (token) {
-        jwt.verify(token, jwtConfigs.secret, (err, decoded) => {
-          if (err) return res.json({ success: false, message: 'Failed to authenticate token.' })
-          req.decoded = decoded
-          next()
-        })
-      } else {
-        res.status(403).send({ sucess: false, message: 'No token provided.' })
+  auth(req, res, next) {
+    return async (req, res, next) => {
+      const authHeader = req.headers.authorization
+      if (!authHeader) {
+        return res.status(401).json({ message: 'Token not provided' })
+      }
+      const [, token] = authHeader.split(' ')
+      try {
+        const decoded = await promisify(jwt.verify)(token, process.env.APP_SECRET)
+        req.userId = decoded.id
+        return next()
+      } catch (err) {
+        return res.status(401).json({ message: 'Token invalid' })
       }
     }
   }
 }
 
 const jwtMiddleware = new JwtMiddleware()
-const sign = jwtMiddleware.sign()
-const verify = jwtMiddleware.verify()
+const auth = jwtMiddleware.auth()
 
-module.exports = { sign, verify }
+module.exports = { auth }
