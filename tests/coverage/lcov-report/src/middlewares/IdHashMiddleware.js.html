@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">92.86% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/14</span>
+        <span class='fraction'>13/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,16 +35,16 @@
         <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">92.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/14</span>
+        <span class='fraction'>13/14</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -70,44 +70,44 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const aes = require('aes-cross')
 &nbsp;
 class IdHashMiddleware {
   setHash(req, res, next) {
     return (req, res, next) =&gt; {
       const { idHash } = req.body
-      <span class="missing-if-branch" title="if path not taken" >I</span>if (idHash) {
-<span class="cstat-no" title="statement not covered" >        try {</span>
-          const key = <span class="cstat-no" title="statement not covered" >Buffer.from(process.env.SECURITY_KEY.split(','))</span>
-          const iv = <span class="cstat-no" title="statement not covered" >Buffer.from(process.env.SECURITY_IV.split(','))</span>
-          const newIdHash = <span class="cstat-no" title="statement not covered" >idHash.replace('B4=RR4', '/').replace('M=41=5', '+')</span>
-<span class="cstat-no" title="statement not covered" >          aes.setKeySize(256)</span>
-          const idClient = <span class="cstat-no" title="statement not covered" >parseInt(aes.decText(newIdHash, key, iv, 'ascii'), 10)</span>
-<span class="cstat-no" title="statement not covered" >          req.body.idClient = idClient</span>
+      if (idHash) {
+        try {
+          const key = Buffer.from(process.env.SECURITY_KEY.split(','))
+          const iv = Buffer.from(process.env.SECURITY_IV.split(','))
+          const newIdHash = idHash.replace('B4=RR4', '/').replace('M=41=5', '+')
+          aes.setKeySize(256)
+          const idClient = parseInt(aes.decText(newIdHash, key, iv, 'ascii'), 10)
+          req.body.idClient = idClient
         } catch (err) {
 <span class="cstat-no" title="statement not covered" >          req.body.idClient = -1</span>
         }
@@ -124,7 +124,7 @@ module.exports = new IdHashMiddleware().setHash()
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 29 2019 00:24:42 GMT-0300 (Brasilia Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 29 2019 08:18:00 GMT-0300 (Brasilia Standard Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

@@ -19,9 +19,9 @@ class UserValidator {
         min: 15,
         max: 100,
       }),
-      check('password_hash', 'Password does not exists').exists(),
-      check('password_hash', 'Password need to be string').isString(),
-      check('password_hash', 'Password string lenght need to be between 5 and 100').isLength({
+      check('password', 'Password does not exists').exists(),
+      check('password', 'Password need to be string').isString(),
+      check('password', 'Password string lenght need to be between 5 and 100').isLength({
         min: 5,
         max: 100,
       }),
@@ -48,7 +48,7 @@ class UserController {
       ? ResponseHelper.get(true, 'User returned.', res, user)
       : ResponseHelper.get(false, 'User not found.', res, user)
     res.json(response)
-    next()
+    return next()
   }
 }
 

@@ -26,7 +26,7 @@ class LogMiddleware {
       }
       if (rawJson) log.rawJson = JSON.stringify(rawJson)
       // save to database
-      console.log(log)
+      // console.log(log)
       return next()
     }
   }

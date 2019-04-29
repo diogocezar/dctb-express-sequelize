@@ -4,6 +4,7 @@ const { promisify } = require('util')
 class JwtMiddleware {
   auth(req, res, next) {
     return async (req, res, next) => {
+      if (res.headersSent) return next()
       const authHeader = req.headers.authorization
       if (!authHeader) {
         return res.status(401).json({ message: 'Token not provided' })

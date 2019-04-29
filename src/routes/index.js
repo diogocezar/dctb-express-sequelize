@@ -70,7 +70,9 @@ class Routes {
     this.router.post('/user', UserValidator.validateStore(), UserController.store)
     this.router.get('/paymentLinks', PaymentLinksController.show)
     this.router.post('/sessions', SessionController.store)
-
+    this.router.get('/idhash', (req, res) => {
+      res.status(200).send({ idClient: req.body.idClient })
+    })
     this.router.use(auth)
     this.router.get('/dashboard', (req, res) => res.status(200).send())
   }
