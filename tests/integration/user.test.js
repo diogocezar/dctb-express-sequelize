@@ -15,9 +15,9 @@ describe('User', () => {
     const response = await request(app)
       .post('/user')
       .send({
-        name: faker.name.findName(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
+        name: user.name,
+        email: user.email,
+        password: user.password,
       })
     expect(response.status).toBe(200)
   })
@@ -29,8 +29,8 @@ describe('User', () => {
       .post('/user')
       .send({
         name: '',
-        email: faker.internet.email(),
-        password: faker.internet.password(),
+        email: user.email,
+        password: user.password,
       })
     expect(response.status).toBe(422)
   })
@@ -43,7 +43,7 @@ describe('User', () => {
       .send({
         name: faker.name.findName(),
         email: '',
-        password: faker.internet.password(),
+        password: user.password,
       })
     expect(response.status).toBe(422)
   })
@@ -54,7 +54,7 @@ describe('User', () => {
     const response = await request(app)
       .post('/user')
       .send({
-        name: faker.name.findName(),
+        name: user.name,
         email: faker.internet.email(),
         password: '',
       })
